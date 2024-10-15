@@ -1,6 +1,6 @@
 sources:
   - name: jaffle_shop
-    database: raw
+    database: RAW
     schema: jaffle_shop
     description: E-commerce data
     tables:
@@ -15,3 +15,4 @@ sources:
         description: One record per SKU for items sold in stores
       - name: supplies
         description: One record per supply per SKU of items sold in stores
+        

@@ -1,31 +1,28 @@
 with
 
-source as (
+    source as (select * from {{ source("jaffle_shop", "supplies") }}),
 
-    select * from {{ source('jaffle_shop', 'supplies') }}
+    renamed as (
 
-),
+        select
 
-renamed as (
+            -- --------  ids
+            {{ dbt_utils.generate_surrogate_key(["id", "sku"]) }} as supply_uuid,
+            id as supply_id,
+            sku as product_id,
 
-    select
+            -- -------- text
+            name as supply_name,
 
-        ----------  ids
-        {{ dbt_utils.generate_surrogate_key(['id', 'sku']) }} as supply_uuid,
-        id as supply_id,
-        sku as product_id,
+            -- -------- numerics
+            (cost / 100.0) as supply_cost,
 
-        ---------- text
-        name as supply_name,
+            -- -------- booleans
+            perishable as is_perishable_supply
 
-        ---------- numerics
-        (cost / 100.0) as supply_cost,
+        from source
 
-        ---------- booleans
-        perishable as is_perishable_supply
+    )
 
-    from source
-
-)
-
-select * from renamed
+select *
+from renamed
