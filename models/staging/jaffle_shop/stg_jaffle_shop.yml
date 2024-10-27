@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_jaffle_shop__customers
+    description: tabela de Stage com fonte de dados RAW do banco de dados SnowFlake "{{doc('descricao_dos_modelos')}}"
+    columns: 
+      - name: customer_id
+        description: coluna referente ao ID dos clientes
+        tests:
+        #description: testes para a coluna ID dos clientes
+          - unique
+          - not_null
+  - name: stg_jaffle_shop__orders
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
