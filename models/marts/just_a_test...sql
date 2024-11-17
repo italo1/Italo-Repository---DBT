@@ -1,0 +1,2 @@
+select
+{{target.database}}

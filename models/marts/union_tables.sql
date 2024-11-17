@@ -1,0 +1,1 @@
+{{union_tables(['PC_DBT_DB.DBT_IVALLE.MODELO1','PC_DBT_DB.DBT_IVALLE.MODELO2'])}} --test, args as a list!
